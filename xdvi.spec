@@ -11,7 +11,6 @@ License: GPL
 Group: Publishing
 Source0: ftp://dante.ctan.org/pub/tex/dviware/xdvi/%{name}-%{version}.tar.bz2
 Source1: icons-%{name}.tar.bz2
-BuildRoot: %{_tmppath}/%{name}-buildroot
 Conflicts: tetex-xdvi
 Requires: tetex
 
