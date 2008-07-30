@@ -1,6 +1,6 @@
 %define name xdvi
 %define version 22.84
-%define release %mkrel 5
+%define release %mkrel 7
 
 Summary: An X viewer for DVI files
 Name: %{name}
