@@ -1,15 +1,14 @@
-%define name xdvi
-%define version 22.84
-%define release %mkrel 8
-
 Summary: An X viewer for DVI files
-Name: %{name}
-Version: %{version}
-Release: %{release}
+Name: xdvi
+Version: 22.85
+Release: %mkrel 1
 Url: http://math.berkeley.edu/~vojta/xdvi.html
-License: GPL
+# encodings.c is GPLv2+ and LGPL and MIT
+# read-mapfile.c tfmload.c are from dvips
+# remaining is MIT
+License: GPLv2+
 Group: Publishing
-Source0: ftp://dante.ctan.org/pub/tex/dviware/xdvi/%{name}-%{version}.tar.bz2
+Source0: ftp://dante.ctan.org/pub/tex/dviware/xdvi/%{name}-%{version}.tar.gz
 Source1: icons-%{name}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-buildroot
 Conflicts: tetex-xdvi
@@ -31,20 +30,20 @@ This xdvi does not come from TeTex distribution.
 %make
 
 %install
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
-mkdir -p %buildroot%_bindir
-mkdir -p %buildroot%_mandir/man1
+mkdir -p %{buildroot}%{_bindir}
+mkdir -p %{buildroot}%{_mandir}/man1
 %makeinstall
 
-mkdir -p %buildroot%_iconsdir
+mkdir -p %{buildroot}%{_iconsdir}
 
-( cd %buildroot%_iconsdir
+( cd %{buildroot}%{_iconsdir}
   tar xjvf %SOURCE1 )
 
 
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications
-cat > $RPM_BUILD_ROOT%{_datadir}/applications/mandriva-%{name}.desktop << EOF
+mkdir -p %{buildroot}%{_datadir}/applications
+cat > %{buildroot}%{_datadir}/applications/mandriva-%{name}.desktop << EOF
 [Desktop Entry]
 Name=XDvi
 Comment=DVI files viewer
@@ -54,6 +53,7 @@ Terminal=false
 Type=Application
 StartupNotify=true
 Categories=X-MandrivaLinux-Office-Publishing;
+MimeType=application/x-dvi;
 EOF
 
 %if %mdkversion < 200900
@@ -67,16 +67,15 @@ EOF
 %endif
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root)
-%doc INSTALL FAQ README
-%_bindir/*
-%_mandir/man?/*
+%doc FAQ README
+%{_bindir}/*
+%{_mandir}/man?/*
 %{_datadir}/applications/mandriva-%{name}.desktop
-%_iconsdir/dvi.png
-%_liconsdir/dvi.png
-%_miconsdir/dvi.png
-
+%{_iconsdir}/dvi.png
+%{_liconsdir}/dvi.png
+%{_miconsdir}/dvi.png
 
