@@ -1,7 +1,7 @@
 Summary: An X viewer for DVI files
 Name: xdvi
 Version: 22.85
-Release: %mkrel 2
+Release: %mkrel 3
 Url: http://math.berkeley.edu/~vojta/xdvi.html
 # encodings.c is GPLv2+ and LGPL and MIT
 # read-mapfile.c tfmload.c are from dvips
@@ -13,6 +13,8 @@ Source1: icons-%{name}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-buildroot
 Conflicts: tetex-xdvi
 Requires: tetex
+Requires: ghostscript
+BuildRequires: ghostscript
 
 BuildRequires: X11-devel
 
@@ -26,7 +28,9 @@ This xdvi does not come from TeTex distribution.
 %setup -q
 
 %build
-%configure
+%configure \
+    --enable-ps-gs=/usr/bin/gs
+
 %make
 
 %install
