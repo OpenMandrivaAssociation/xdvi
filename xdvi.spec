@@ -1,7 +1,7 @@
 Summary: An X viewer for DVI files
 Name: xdvi
 Version: 22.85
-Release: %mkrel 3
+Release: %mkrel 4
 Url: http://math.berkeley.edu/~vojta/xdvi.html
 # encodings.c is GPLv2+ and LGPL and MIT
 # read-mapfile.c tfmload.c are from dvips
