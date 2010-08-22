@@ -1,7 +1,7 @@
 Summary: An X viewer for DVI files
 Name: xdvi
 Version: 22.85
-Release: %mkrel 4
+Release: %mkrel 5
 Url: http://math.berkeley.edu/~vojta/xdvi.html
 # encodings.c is GPLv2+ and LGPL and MIT
 # read-mapfile.c tfmload.c are from dvips
@@ -29,7 +29,9 @@ This xdvi does not come from TeTex distribution.
 
 %build
 %configure \
-    --enable-ps-gs=/usr/bin/gs
+    --enable-ps-gs=/usr/bin/gs \
+    --with-default-texmf-path=/var/lib/texmf/ \
+    --with-default-font-path='/var/lib/texmf/%%q'
 
 %make
 
